@@ -22,7 +22,7 @@ async def advices_handler(message: types.Message):
 
 
 @dp.callback_query(F.data.startswith('ad_'))
-async def advices_handler(callback: types.CallbackQuery):
+async def advices_handler_param(callback: types.CallbackQuery):
     text = 'Не удалось найти таких мест('
     if callback.data == 'ad_family':
         text = markdown.text(

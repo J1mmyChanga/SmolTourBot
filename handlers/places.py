@@ -13,13 +13,6 @@ async def places_handler(callback: types.CallbackQuery):
     )
 
 
-@dp.message(Command('places'))
-async def advices_handler(message: types.Message):
-    await message.answer(
-        text='Выберите локацию, в которой хотели бы сфотографироваться',
-        reply_markup=create_places_keyboard()
-    )
-
 @dp.callback_query(F.data.startswith('loc_'))
 async def places_handler_location(callback: types.CallbackQuery):
     text = 'Не удалось найти таких мест('
