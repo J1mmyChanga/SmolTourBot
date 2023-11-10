@@ -15,6 +15,12 @@ c3 = Categories(category='Историческое наследие')
 for i in range(1, 4):
     session.add(eval(f'c{i}'))
 
+ap1 = AdviceParams(param='Путешествует всей семьёй')
+ap2 = AdviceParams(param='Хочет вкусно покушать')
+ap3 = AdviceParams(param='Ищет интересные развлечения')
+for i in range(1, 4):
+    session.add(eval(f'ap{i}'))
+
 a1 = Answers(category=1, question='aaaaaaaaaaa', answer='bbbbbbbbbbb')
 a2 = Answers(category=1, question='eeeeeeeeeee', answer='rrrrrrrrrrr')
 a3 = Answers(category=2, question='fffffffffff', answer='ggggggggggg')

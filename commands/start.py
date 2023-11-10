@@ -22,7 +22,6 @@ async def handle_command_start(message: types.Message):
     #     input_field_placeholder='Выберите кнопку',
     # )
 
-
     session = create_session()
 
     if not session.query(Users).filter(Users.user_id==message.from_user.id):

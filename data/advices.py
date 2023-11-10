@@ -8,7 +8,7 @@ class Advices(SqlAlchemyBase):
     __tablename__ = 'advices'
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
-    category = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('categories.id'))
     advice = sqlalchemy.Column(sqlalchemy.String)
+    param = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('adviceparams.id'))
 
-    categories = orm.relationship('Categories', backref='advices')
+    categories = orm.relationship('AdviceParams', backref='advices')

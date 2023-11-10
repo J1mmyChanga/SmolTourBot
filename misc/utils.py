@@ -13,21 +13,17 @@ def create_func_keyboard():
 
 
 def create_places_keyboard():
-    buttons = [
-        [types.InlineKeyboardButton(text='Парки', callback_data='loc_parks')],
-        [types.InlineKeyboardButton(text='Исторические места', callback_data='loc_history')],
-        [types.InlineKeyboardButton(text='Интересная архитектура', callback_data='loc_architecture')],
-    ]
+    session = create_session()
+    locations = [(i.location, i.id) for i in session.query(Locations).all()]
+    buttons = [[types.InlineKeyboardButton(text=i[0], callback_data=f'loc_{i[1]}')] for i in locations]
     keyboard = types.InlineKeyboardMarkup(inline_keyboard=buttons)
     return keyboard
 
 
 def create_advices_keyboard():
-    buttons = [
-        [types.InlineKeyboardButton(text='Путешествует всей семьёй', callback_data='ad_family')],
-        [types.InlineKeyboardButton(text='Хочет вкусно покушать', callback_data='ad_food')],
-        [types.InlineKeyboardButton(text='Ищет интересные развлечения', callback_data='ad_entertainment')],
-    ]
+    session = create_session()
+    params = [(i.param, i.id) for i in session.query(AdviceParams).all()]
+    buttons = [[types.InlineKeyboardButton(text=i[0], callback_data=f'ad_{i[1]}')] for i in params]
     keyboard = types.InlineKeyboardMarkup(inline_keyboard=buttons)
     return keyboard
 
@@ -40,7 +36,7 @@ def create_recommendations_keyboard():
     return keyboard
 
 
-def create_categrory_of_answers_keyboard():
+def create_category_of_answers_keyboard():
     session = create_session()
     categories = [(i.category, i.id) for i in session.query(Categories).all()]
     buttons = [[types.InlineKeyboardButton(text=i[0], callback_data=f'ans_{i[1]}')] for i in categories]

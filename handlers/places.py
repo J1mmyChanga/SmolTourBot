@@ -16,21 +16,11 @@ async def places_handler(callback: types.CallbackQuery):
 @dp.callback_query(F.data.startswith('loc_'))
 async def places_handler_location(callback: types.CallbackQuery):
     text = 'Не удалось найти таких мест('
-    if callback.data == 'loc_parks':
+    if callback.data:
+        id = callback.data.split('_')[-1]
+        location = session.get(Locations, id).location
         text = markdown.text(
-            'Вот красивые локации для фото в парках:',
-            '',
-            sep='\n'
-        )
-    elif callback.data == 'loc_history':
-        text = markdown.text(
-            'Вот красивые локации для фото в исторических местах:',
-            '',
-            sep='\n'
-        )
-    elif callback.data == 'loc_architecture':
-        text = markdown.text(
-            'Вот красивые локации для местах с красивой архитектурой:',
+            f'Лучшие места в локации {location}:',
             '',
             sep='\n'
         )
