@@ -2,6 +2,8 @@ import asyncio
 import logging
 import sys
 from create_entities import *
+from commands import *
+from handlers import *
 
 async def main():
     await dp.start_polling(bot)

@@ -9,4 +9,5 @@ class Places(SqlAlchemyBase):
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     address = sqlalchemy.Column(sqlalchemy.String)
+    location = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('locations.id'))
     #img = sqlalchemy.Column(sqlalchemy.BLOB)
