@@ -26,6 +26,9 @@ async def recommendations_handler_category(callback: types.CallbackQuery):
     id = callback.data.split("_")[-1]
     category = session.get(Categories, id).category
     recommendations = [i.recommendation for i in session.query(Recommendations).filter(Recommendations.category == id)]
+    if not recommendations:
+        await callback.message.answer(f'📝 По теме "{category}" пользователи пока ничего не рекомендуют 📝')
+        return
     if callback.data:
         await callback.message.answer(f'📝 По теме "{category}" пользователи рекомендуют 📝:')
         for i in recommendations:
