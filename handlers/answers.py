@@ -5,9 +5,9 @@ from create_entities import *
 from misc import *
 
 
-@dp.callback_query(F.data == 'answers')
-async def answers_handler(callback: types.CallbackQuery):
-    await callback.message.answer(
+@dp.message(F.text.lower() == 'ответы на частые вопросы')
+async def answers_handler(message: types.Message):
+    await message.answer(
         text='Выберите тему, которая вас интересует:',
         reply_markup=create_category_of_answers_keyboard()
     )

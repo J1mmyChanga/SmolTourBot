@@ -9,5 +9,5 @@ from misc import *
 async def answers_handler_command(message: types.Message):
     await message.answer(
         text='Выберите тему, которая вас интересует:',
-        reply_markup=create_categrory_of_answers_keyboard()
+        reply_markup=create_category_of_answers_keyboard()
     )

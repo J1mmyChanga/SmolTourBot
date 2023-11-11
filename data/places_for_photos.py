@@ -11,3 +11,5 @@ class Places(SqlAlchemyBase):
     address = sqlalchemy.Column(sqlalchemy.String)
     location = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('locations.id'))
     #img = sqlalchemy.Column(sqlalchemy.BLOB)
+
+    locations = orm.relationship('Locations', backref='places')

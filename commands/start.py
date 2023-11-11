@@ -10,17 +10,17 @@ from misc import *
 @dp.message(CommandStart())
 async def handle_command_start(message: types.Message):
     text = 'Начните работать с нашим ботом'
-    # kb = [
-    #     [types.KeyboardButton(text='Места для фотосессий')],
-    #     [types.KeyboardButton(text='Советы путешествующим')],
-    #     [types.KeyboardButton(text='Рекомендации от пользователей')],
-    #     [types.KeyboardButton(text='Ответы на частые вопросы')],
-    # ]
-    # keyboard = types.ReplyKeyboardMarkup(
-    #     keyboard=kb,
-    #     resize_keyboard=True,
-    #     input_field_placeholder='Выберите кнопку',
-    # )
+    kb = [
+        [types.KeyboardButton(text='Места для фотосессий')],
+        [types.KeyboardButton(text='Советы путешествующим')],
+        [types.KeyboardButton(text='Рекомендации от пользователей')],
+        [types.KeyboardButton(text='Ответы на частые вопросы')],
+    ]
+    keyboard = types.ReplyKeyboardMarkup(
+        keyboard=kb,
+        resize_keyboard=True,
+        input_field_placeholder='Выберите кнопку',
+    )
 
     session = create_session()
 
@@ -29,7 +29,7 @@ async def handle_command_start(message: types.Message):
         text = 'юзер есть'
     await message.answer(
         text=text,
-        reply_markup=create_func_keyboard(),
+        reply_markup=keyboard,
     )
     session.commit()
 

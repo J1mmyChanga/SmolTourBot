@@ -4,9 +4,9 @@ from create_entities import *
 from misc import *
 
 
-@dp.callback_query(F.data == 'advices')
-async def advices_handler(callback: types.CallbackQuery):
-    await callback.message.answer(
+@dp.message(F.text.lower() == 'советы путешествующим')
+async def advices_handler(message: types.Message):
+    await message.answer(
         text='Советы от нас для тех, кто:',
         reply_markup=create_advices_keyboard()
     )
