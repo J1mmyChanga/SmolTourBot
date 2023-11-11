@@ -8,6 +8,6 @@ from misc import *
 @dp.message(Command('answers'))
 async def answers_handler_command(message: types.Message):
     await message.answer(
-        text='Выберите тему, которая вас интересует:',
+        text='❓ Выберите тему, которая вас интересует ❓:',
         reply_markup=create_category_of_answers_keyboard()
     )

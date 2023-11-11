@@ -1,14 +1,12 @@
-from aiogram import types, F
-from aiogram.filters import Command
-from aiogram.utils import markdown
+from aiogram import F
 from create_entities import *
 from misc import *
 
 
-@dp.message(F.text.lower() == 'ответы на частые вопросы')
+@dp.message(F.text.lower() == '❓ ответы на частые вопросы ❓')
 async def answers_handler(message: types.Message):
     await message.answer(
-        text='Выберите тему, которая вас интересует:',
+        text='❓ Выберите тематику интересующего вас вопроса ❓:',
         reply_markup=create_category_of_answers_keyboard()
     )
 
@@ -16,11 +14,9 @@ async def answers_handler(message: types.Message):
 @dp.callback_query(F.data.startswith('ans_'))
 async def answers_handler_category(callback: types.CallbackQuery):
     session = create_session()
-    text = 'Не удалось найти таких вопросов('
     id = callback.data.split("_")[-1]
     category = session.get(Categories, id).category
-    if callback.data:
-        text = f'Вопросы на тему "{category}":'
+    text = f'❓ Многие туристы часто задаются вопросами на тему: "{category}" ❓:'
     await callback.message.answer(
         text=text,
         reply_markup=create_questions_keyboard(category=id)
@@ -30,11 +26,9 @@ async def answers_handler_category(callback: types.CallbackQuery):
 @dp.callback_query(F.data.startswith('quest_'))
 async def questions_handler(callback: types.CallbackQuery):
     session = create_session()
-    text = 'Не удалось найти ответов на такие вопросы('
     id = callback.data.split("_")[-1]
     question = session.get(Answers, id)
-    if callback.data:
-        text = question.answer
+    text = question.answer
     await callback.message.answer(
         text=text
     )
